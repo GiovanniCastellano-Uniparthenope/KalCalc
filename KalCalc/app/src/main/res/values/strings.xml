@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KalCalc</string>
+
+    <string name="title_activity_splash_screen">KalCalc</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="textview">KalCalc</string>
+    <string name="searchText">Search foods...</string>
+</resources>

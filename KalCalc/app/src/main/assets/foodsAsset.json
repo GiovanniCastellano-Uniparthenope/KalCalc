@@ -1,0 +1,44 @@
+{
+	"foods": [
+		{
+			"names": ["Sugar", "Zucchero"],
+			"calories": "3.80",
+			"category": "5"
+		},
+		{
+			"names": ["Flour", "Farina"],
+			"calories": "3.56",
+			"category": "5"
+		},
+		{
+			"names": ["Egg", "Uovo"],
+			"calories": "1.44",
+			"category": "3"
+		},
+		{
+			"names": ["Carrot", "Carota"],
+			"calories": "0.34",
+			"category": "2"
+		},
+		{
+			"names": ["Apple", "Mela"],
+			"calories": "0.52",
+			"category": "2"
+		},
+		{
+			"names": ["Beef", "Bovino"],
+			"calories": "2.77",
+			"category": "1"
+		},
+		{
+			"names": ["Chicken", "Pollo"],
+			"calories": "2.20",
+			"category": "1"
+		},
+		{
+			"names": ["Tuna", "Tonno"],
+			"calories": "1.30",
+			"category": "4"
+		}
+	]
+}
