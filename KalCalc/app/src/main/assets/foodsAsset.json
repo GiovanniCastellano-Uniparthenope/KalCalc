@@ -1,11 +1,7 @@
 {
 	"foods": [
 		{
-<<<<<<< Updated upstream
-			"names": ["Sugar", "Zucche"],
-=======
-			"names": ["Sugar", "ZuccheLo"],
->>>>>>> Stashed changes
+			"names": ["Sugar", "Zucchero"],
 			"calories": "3.80",
 			"carbohydrates": "1.0",
 			"fats": "0.0",
