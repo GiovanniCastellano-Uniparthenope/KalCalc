@@ -3,65 +3,65 @@
 		{
 			"names": ["Sugar", "Zucchero"],
 			"calories": "3.80",
-			"carbohydrates": "1.0"
-			"fats": "0.0"
-			"proteins": "0.0"
+			"carbohydrates": "1.0",
+			"fats": "0.0",
+			"proteins": "0.0",
 			"category": "5"
 		},
 		{
 			"names": ["Flour", "Farina"],
 			"calories": "3.56",
-			"carbohydrates": "0.76"
-			"fats": "0.0096"
-			"proteins": "0.104"
+			"carbohydrates": "0.76",
+			"fats": "0.0096",
+			"proteins": "0.104",
 			"category": "5"
 		},
 		{
 			"names": ["Egg", "Uovo"],
 			"calories": "1.44",
-			"carbohydrates": "0.008"
-			"fats": "0.096"
-			"proteins": "0.126"
+			"carbohydrates": "0.008",
+			"fats": "0.096",
+			"proteins": "0.126",
 			"category": "3"
 		},
 		{
 			"names": ["Carrot", "Carota"],
 			"calories": "0.34",
-			"carbohydrates": "0.082"
-			"fats": "0.002"
-			"proteins": "0.006"
+			"carbohydrates": "0.082",
+			"fats": "0.002",
+			"proteins": "0.006",
 			"category": "2"
 		},
 		{
 			"names": ["Apple", "Mela"],
 			"calories": "0.52",
-			"carbohydrates": "0.13"
-			"fats": "0.001"
-			"proteins": "0.002"
+			"carbohydrates": "0.13",
+			"fats": "0.001",
+			"proteins": "0.002",
 			"category": "2"
 		},
 		{
 			"names": ["Beef", "Bovino"],
 			"calories": "2.77",
-			"carbohydrates": "0.0"
-			"fats": "0.2"
-			"proteins": "0.25"
+			"carbohydrates": "0.0",
+			"fats": "0.2",
+			"proteins": "0.25",
 			"category": "1"
 		},
 		{
 			"names": ["Chicken", "Pollo"],
 			"calories": "2.20",
-			"carbohydrates": "0.0"
-			"fats": "0.12"
-			"proteins": "0.23"
+			"carbohydrates": "0.0",
+			"fats": "0.12",
+			"proteins": "0.23",
 			"category": "1"
 		},
 		{
 			"names": ["Tuna", "Tonno"],
 			"calories": "1.30",
-			"carbohydrates": "0.0"
-			"fats": "0.005"
-			"proteins": "0.29"
+			"carbohydrates": "0.0",
+			"fats": "0.005",
+			"proteins": "0.29",
 			"category": "4"
 		}
 	]
