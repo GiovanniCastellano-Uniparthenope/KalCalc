@@ -29,12 +29,11 @@ class SplashScreen : AppCompatActivity() {
 
         val handler = Handler()
         handler.postDelayed({
-            var totaltime = 0;
             var foodFile = applicationContext.assets.open("foodsAsset.json").bufferedReader().use {
                 it.readText()
             }
             var jsonparser = JSONparser()
-            totaltime += jsonparser.readFoodsFromFile(foodFile)
+            jsonparser.readFoodsFromFile(foodFile)
 
             try
             {
@@ -60,16 +59,23 @@ class SplashScreen : AppCompatActivity() {
             foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
                 it.readText()
             }
-            totaltime += jsonparser.readFoodsFromCustomFile(foodFile)
 
-            totaltime = 1000 - totaltime
-            if(totaltime < 0)
-                totaltime = 0
-            Thread.sleep(totaltime.toLong())
+            try
+            {
+                jsonparser.readFoodsFromCustomFile(foodFile)
+            }
+            catch (e : Exception)
+            {
+                foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
+                    it.readText()
+                }
+
+                jsonparser.readFoodsFromCustomFile(foodFile)
+            }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }, 100)
+        }, 1000)
     }
 
     override fun onBackPressed() {

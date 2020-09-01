@@ -20,8 +20,11 @@ class JSONparser {
                 names.add(namesarray.getString(i))
 
             val calories = jsonObject.optString("calories").toFloat()
+            val carbohydrates = jsonObject.optString("carbohydrates").toFloat()
+            val fats =  jsonObject.optString("fats").toFloat()
+            val proteins = jsonObject.optString("proteins").toFloat()
             val intcategory = jsonObject.optString("category").toInt()
-            var category : CATEGORY
+            var category = CATEGORY.OTHER
 
             if(intcategory == 1)
                 category = CATEGORY.MEAT
@@ -34,7 +37,7 @@ class JSONparser {
             else (intcategory == 5)
                 category = CATEGORY.OTHER
 
-            food = Food(names, calories, category)
+            food = Food(names, calories, carbohydrates, fats, proteins, category)
             allfoods.add(food)
         }
 
@@ -57,8 +60,11 @@ class JSONparser {
                 names.add(namesarray.getString(i))
 
             val calories = jsonObject.optString("calories").toFloat()
+            val carbohydrates = jsonObject.optString("carbohydrates").toFloat()
+            val fats =  jsonObject.optString("fats").toFloat()
+            val proteins = jsonObject.optString("proteins").toFloat()
             val intcategory = jsonObject.optString("category").toInt()
-            var category : CATEGORY
+            var category = CATEGORY.OTHER
 
             if(intcategory == 1)
                 category = CATEGORY.MEAT
@@ -68,10 +74,10 @@ class JSONparser {
                 category = CATEGORY.ANIMAL_DERIVATE
             else if(intcategory == 4)
                 category = CATEGORY.FISH
-            else (intcategory == 5)
+            else
                 category = CATEGORY.OTHER
 
-            food = Food(names, calories, category)
+            food = Food(names, calories, carbohydrates, fats, proteins, category)
             allfoods.add(food)
         }
 
@@ -80,18 +86,34 @@ class JSONparser {
 
     fun addCustomFood(food : Food)
     {
-        var jsonstring = ",\n\t\t{\n"
+        var jsonstring : String
+        if(allFoods.customFoodsFile.contains("name"))
+            jsonstring = ",\n\t\t{\n"
+        else
+            jsonstring = "\n\t\t{\n"
+
+
         jsonstring += "\t\t\t\"names\": ["
         val name = food.getName(0)
         jsonstring += "\"" + name + "\"]\n"
         jsonstring += "\t\t\t\"calories\": "
         jsonstring += "\"" + food.calories.toString() + "\"\n"
+        jsonstring += "\t\t\t\"carbohydrates\": "
+        jsonstring += "\"" + food.carbohydrates.toString() + "\"\n"
+        jsonstring += "\t\t\t\"fats\": "
+        jsonstring += "\"" + food.fats.toString() + "\"\n"
+        jsonstring += "\t\t\t\"proteins\": "
+        jsonstring += "\"" + food.proteins.toString() + "\"\n"
         jsonstring += "\t\t\t\"category\": "
         jsonstring += "\"" + food.category.type.toString() + "\"\n"
         jsonstring += "\n\t\t}\n"
 
-        allFoods.customFoodsFile = allFoods.customFoodsFile.substring(0, allFoods.customFoodsFile.length - 10) + jsonstring
+        print(allFoods.customFoodsFile + "\n\n\n\n")
+
+        allFoods.customFoodsFile = allFoods.customFoodsFile.substring(0, allFoods.customFoodsFile.length - 6) + jsonstring
         allFoods.customFoodsFile += "\n\t]\n}"
+
+        print(allFoods.customFoodsFile + "\n\n\n\n")
     }
 
     fun resetCustomFoods()
