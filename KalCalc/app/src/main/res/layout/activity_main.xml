@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_alignWithParentIfMissing="false"
     android:layout_centerHorizontal="true"
+    android:backgroundTint="#FFFFFF"
     android:visibility="visible"
     tools:context=".MainActivity">
 
@@ -43,15 +44,16 @@
     <TextView
         android:id="@+id/foodName"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="33dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:background="#FFFFFF"
         android:backgroundTint="#E4E4E4"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textSize="14sp"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/quantityText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +61,8 @@
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         android:text="@string/x"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/foodName"
@@ -96,14 +98,18 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="4dp"
+        android:foregroundTint="#00159C"
+        android:shadowColor="#AEAEAE"
+        android:thumbTint="#EFEDED"
+        android:trackTint="#01159A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toEndOf="@+id/ToggleText"
         app:layout_constraintTop_toBottomOf="@+id/quantityText" />
 
     <ListView
+        android:id="@+id/mealList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"

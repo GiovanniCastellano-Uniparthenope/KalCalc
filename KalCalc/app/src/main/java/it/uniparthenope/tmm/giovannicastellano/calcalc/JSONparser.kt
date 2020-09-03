@@ -19,6 +19,7 @@ class JSONparser {
             for(i in 0 until namesarray.length())
                 names.add(namesarray.getString(i))
 
+            val portion = jsonObject.optString("portion").toFloat()
             val calories = jsonObject.optString("calories").toFloat()
             val carbohydrates = jsonObject.optString("carbohydrates").toFloat()
             val fats =  jsonObject.optString("fats").toFloat()
@@ -37,7 +38,7 @@ class JSONparser {
             else (intcategory == 5)
                 category = CATEGORY.OTHER
 
-            food = Food(names, calories, carbohydrates, fats, proteins, category)
+            food = Food(names, portion, calories, carbohydrates, fats, proteins, category)
             allfoods.add(food)
         }
 
@@ -59,6 +60,7 @@ class JSONparser {
             for(i in 0 until namesarray.length())
                 names.add(namesarray.getString(i))
 
+            val portion = jsonObject.optString("portion").toFloat()
             val calories = jsonObject.optString("calories").toFloat()
             val carbohydrates = jsonObject.optString("carbohydrates").toFloat()
             val fats =  jsonObject.optString("fats").toFloat()
@@ -77,7 +79,7 @@ class JSONparser {
             else
                 category = CATEGORY.OTHER
 
-            food = Food(names, calories, carbohydrates, fats, proteins, category)
+            food = Food(names, portion, calories, carbohydrates, fats, proteins, category)
             allfoods.add(food)
         }
 
@@ -96,6 +98,8 @@ class JSONparser {
         jsonstring += "\t\t\t\"names\": ["
         val name = food.getName(0)
         jsonstring += "\"" + name + "\"]\n"
+        jsonstring += "\t\t\t\"portion\": "
+        jsonstring += "\"" + food.portion.toString() + "\"\n"
         jsonstring += "\t\t\t\"calories\": "
         jsonstring += "\"" + food.calories.toString() + "\"\n"
         jsonstring += "\t\t\t\"carbohydrates\": "
