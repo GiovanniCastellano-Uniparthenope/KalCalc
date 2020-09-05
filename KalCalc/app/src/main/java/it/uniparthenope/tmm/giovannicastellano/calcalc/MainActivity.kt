@@ -1,5 +1,6 @@
 package it.uniparthenope.tmm.giovannicastellano.calcalc
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -21,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         var quantity = findViewById<EditText>(R.id.quantityText)
         var usePortions = findViewById<Switch>(R.id.usePortions)
         var mealList = findViewById<ListView>(R.id.mealList)
-        var meals = ArrayList<String>()
-        var mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meals)
+        var meal = ArrayList<String>()
+        var mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
         mealList.adapter = mealAdapter
 
         var XBtn = findViewById<Button>(R.id.delete)
@@ -133,8 +134,8 @@ class MainActivity : AppCompatActivity() {
                         }
                         if(listStr != "")
                         {
-                            meals.add(listStr)
-                            mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meals)
+                            meal.add(listStr)
+                            mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
                             mealList.adapter = mealAdapter
                         }
                     }
@@ -146,14 +147,17 @@ class MainActivity : AppCompatActivity() {
         })
         resetListBtn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                meals.clear()
-                mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meals)
+                meal.clear()
+                mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
                 mealList.adapter = mealAdapter
             }
         })
-    }
-
-    override fun onBackPressed() {
-        //DO NOTHING
+        confirmBtn.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                allFoods.meal = meal
+                val intent = Intent(context, ResultsActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

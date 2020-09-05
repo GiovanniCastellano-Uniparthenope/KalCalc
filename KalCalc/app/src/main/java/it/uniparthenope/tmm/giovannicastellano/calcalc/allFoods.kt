@@ -5,5 +5,6 @@ class allFoods {
         @JvmStatic var standardFoods = ArrayList<Food>()
         @JvmStatic var customFoods = ArrayList<Food>()
         @JvmStatic var customFoodsFile = String()
+        @JvmStatic var meal = ArrayList<String>()
     }
 }
