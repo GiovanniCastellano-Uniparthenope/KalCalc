@@ -1,6 +1,5 @@
 package it.uniparthenope.tmm.giovannicastellano.calcalc
 
-import android.content.Context
 import org.json.JSONObject
 import kotlin.collections.*
 
@@ -8,7 +7,7 @@ class JSONparser {
     fun readFoodsFromFile(file : String): Int {
         var foodJSON = JSONObject(file)
         var foodNames = foodJSON.optJSONArray("foods")
-        var allfoods = allFoods.standardFoods
+        var allfoods = static.standardFoods
         var food : Food
 
         for (i in 0 until foodNames.length())
@@ -48,8 +47,8 @@ class JSONparser {
     fun readFoodsFromCustomFile(file : String): Int {
         var foodJSON = JSONObject(file)
         var foodNames = foodJSON.optJSONArray("foods")
-        var allfoods = allFoods.customFoods
-        allFoods.customFoodsFile = file;
+        var allfoods = static.customFoods
+        static.customFoodsFile = file;
         var food : Food
 
         for (i in 0 until foodNames.length())
@@ -89,7 +88,7 @@ class JSONparser {
     fun addCustomFood(food : Food)
     {
         var jsonstring : String
-        if(allFoods.customFoodsFile.contains("name"))
+        if(static.customFoodsFile.contains("name"))
             jsonstring = ",\n\t\t{\n"
         else
             jsonstring = "\n\t\t{\n"
@@ -112,18 +111,18 @@ class JSONparser {
         jsonstring += "\"" + food.category.type.toString() + "\"\n"
         jsonstring += "\n\t\t}\n"
 
-        print(allFoods.customFoodsFile + "\n\n\n\n")
+        print(static.customFoodsFile + "\n\n\n\n")
 
-        allFoods.customFoodsFile = allFoods.customFoodsFile.substring(0, allFoods.customFoodsFile.length - 6) + jsonstring
-        allFoods.customFoodsFile += "\n\t]\n}"
+        static.customFoodsFile = static.customFoodsFile.substring(0, static.customFoodsFile.length - 6) + jsonstring
+        static.customFoodsFile += "\n\t]\n}"
 
-        print(allFoods.customFoodsFile + "\n\n\n\n")
+        print(static.customFoodsFile + "\n\n\n\n")
     }
 
     fun resetCustomFoods()
     {
         val jsonfile = "{\n\t\"foods\": [\n\t\t\n\t]\n}"
-        allFoods.customFoodsFile = jsonfile
+        static.customFoodsFile = jsonfile
         print(jsonfile + "\n")
     }
 }

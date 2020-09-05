@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
         buttons.add(XBtn); buttons.add(AddFoodBtn); buttons.add(ConfirmBtn); buttons.add(ResetBtn)
 
 
-        var language = LANGUAGE.ITALIAN
-        var allfoods = allFoods.standardFoods
-        var customfoods = allFoods.customFoods
+        var language = static.language
+        var allfoods = static.standardFoods
+        var customfoods = static.customFoods
         var loadedFoods = ArrayList<Food>()
         loadedFoods.addAll(customfoods)
         loadedFoods.addAll(allfoods)
@@ -115,9 +115,9 @@ class MainActivity : AppCompatActivity() {
                     if(amount > 0)
                     {
                         var listStr = ""
-                        var currFood = allFoods.standardFoods[0]
+                        var currFood = static.standardFoods[0]
                         var setted = false
-                        for(food in allFoods.standardFoods)
+                        for(food in static.standardFoods)
                         {
                             if(food.getName(language.type) == foodName.text)
                             { currFood = food; setted = true; break }
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
         })
         confirmBtn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                allFoods.meal = meal
+                static.meal = meal
                 val intent = Intent(context, ResultsActivity::class.java)
                 startActivity(intent)
             }
