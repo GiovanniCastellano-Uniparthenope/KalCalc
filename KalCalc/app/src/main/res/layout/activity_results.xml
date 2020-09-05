@@ -7,12 +7,10 @@
     android:backgroundTint="#F6F6F6"
     tools:context=".ResultsActivity">
 
-    <ListView
-        android:id="@+id/meals"
-        android:layout_width="0dp"
-        android:layout_height="489dp"
-        android:background="#D6D6D6"
-        android:visibility="visible"
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

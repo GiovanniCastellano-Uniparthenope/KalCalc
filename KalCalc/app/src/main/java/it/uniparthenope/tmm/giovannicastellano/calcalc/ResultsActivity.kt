@@ -16,8 +16,6 @@ class ResultsActivity : AppCompatActivity() {
         val meal = allFoods.meal
 
         var mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
-        val mealList = findViewById<ListView>(R.id.meals)
-        mealList.adapter = mealAdapter
-
+        val pieChart = findViewById<com.github.mikephil.charting.charts.PieChart>(R.id.pieChart)
     }
 }
