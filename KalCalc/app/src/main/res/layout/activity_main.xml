@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/toggle_for_using_portions_instead_of_grams"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,14 +99,13 @@
         android:id="@+id/usePortions"
         android:layout_width="50dp"
         android:layout_height="21dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:foregroundTint="#00159C"
         android:shadowColor="#AEAEAE"
         android:thumbTint="#EFEDED"
         android:trackTint="#01159A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/ToggleText"
         app:layout_constraintTop_toBottomOf="@+id/quantityText" />
 
@@ -125,7 +125,7 @@
     <Button
         android:id="@+id/confirmBtn"
         android:layout_width="130dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:keepScreenOn="false"
         android:text="@string/confirm_meal"
@@ -137,7 +137,7 @@
     <Button
         android:id="@+id/resetListBtn"
         android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:keepScreenOn="false"
         android:text="@string/reset_list"
@@ -149,7 +149,7 @@
     <Button
         android:id="@+id/addFoodToMeal"
         android:layout_width="160dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/add_food_to_meal"
         app:layout_constraintEnd_toEndOf="parent"

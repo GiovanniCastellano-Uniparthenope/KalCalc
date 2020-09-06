@@ -73,6 +73,8 @@ class SplashScreen : AppCompatActivity() {
                 jsonparser.readFoodsFromCustomFile(foodFile)
             }
 
+            static.language = LANGUAGE.ENGLISH
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

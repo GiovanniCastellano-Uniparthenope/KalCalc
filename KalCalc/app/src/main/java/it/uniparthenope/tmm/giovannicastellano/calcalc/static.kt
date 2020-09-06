@@ -7,5 +7,10 @@ class static {
         @JvmStatic var customFoodsFile = String()
         @JvmStatic var meal = ArrayList<String>()
         @JvmStatic var language = LANGUAGE.ENGLISH
+        @JvmStatic var highestCal = String()
+        @JvmStatic var highestCarb = String()
+        @JvmStatic var highestFats = String()
+        @JvmStatic var highestProts = String()
+        @JvmStatic var highestQ = String()
     }
 }

@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         val context = this
 
+        setTexts()
+
         var foodName = findViewById<TextView>(R.id.foodName)
         var quantity = findViewById<EditText>(R.id.quantityText)
         var usePortions = findViewById<Switch>(R.id.usePortions)
@@ -34,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         var buttons = ArrayList<Button>()
         buttons.add(XBtn); buttons.add(AddFoodBtn); buttons.add(ConfirmBtn); buttons.add(ResetBtn)
 
-
-        var language = static.language
         var allfoods = static.standardFoods
         var customfoods = static.customFoods
         var loadedFoods = ArrayList<Food>()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     AddFoodBtn.visibility = View.GONE
                     for(food in loadedFoods)
                     {
-                        val name = food.getName(language.type)
+                        val name = food.getName(static.language.type)
                         var sublength = 0;
                         if(name.length >= s.length)
                             sublength = s.length
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
                         if(name.substring(0, sublength).toLowerCase() == s.substring(0, s.length).toLowerCase())
                         {
-                            matchingFoods.add(food.getName(language.type));
+                            matchingFoods.add(food.getName(static.language.type));
                         }
                     }
                 }
@@ -119,13 +119,13 @@ class MainActivity : AppCompatActivity() {
                         var setted = false
                         for(food in static.standardFoods)
                         {
-                            if(food.getName(language.type) == foodName.text)
+                            if(food.getName(static.language.type) == foodName.text)
                             { currFood = food; setted = true; break }
                         }
 
                         if(setted)
                         {
-                            listStr += currFood.getName(language.type)
+                            listStr += currFood.getName(static.language.type)
                             listStr += ": "
                             if(usePortions.isChecked)
                                 listStr += (((currFood.portion * amount).toInt()).toString() + "g")
@@ -142,6 +142,7 @@ class MainActivity : AppCompatActivity() {
 
                     foodName.text = ""
                     quantity.text.clear()
+                    usePortions.isChecked = false
                 }
             }
         })
@@ -159,5 +160,23 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
+
+    fun setTexts()
+    {
+        val languageManager = LanguageManager()
+        languageManager.englishTexts.add("Search foods..."); languageManager.italianTexts.add("Cerca ingredienti...")
+        languageManager.englishTexts.add("grams or portions..."); languageManager.italianTexts.add("grammi o porzioni...")
+        languageManager.englishTexts.add("Use portions instead of grams:"); languageManager.italianTexts.add("Usa porzioni invece dei grammi:")
+        languageManager.englishTexts.add("ADD FOOD TO MEAL"); languageManager.italianTexts.add("AGGIUNGI INGREDIENTE")
+        languageManager.englishTexts.add("RESET MEAL"); languageManager.italianTexts.add("RESETTA PASTO")
+        languageManager.englishTexts.add("CONFIRM MEAL"); languageManager.italianTexts.add("CONFERMA PASTO")
+
+        findViewById<EditText>(R.id.searchText).hint = languageManager.getStringAt(0);
+        findViewById<EditText>(R.id.quantityText).hint = languageManager.getStringAt(1);
+        findViewById<TextView>(R.id.ToggleText).text = languageManager.getStringAt(2);
+        findViewById<Button>(R.id.addFoodToMeal).text = languageManager.getStringAt(3);
+        findViewById<Button>(R.id.resetListBtn).text = languageManager.getStringAt(4);
+        findViewById<Button>(R.id.confirmBtn).text = languageManager.getStringAt(5);
     }
 }

@@ -1,15 +1,13 @@
 package it.uniparthenope.tmm.giovannicastellano.calcalc
 
 import android.graphics.Color
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import kotlin.collections.ArrayList
-import com.github.mikephil.charting.*
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 
 class ResultsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +15,8 @@ class ResultsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_results)
         supportActionBar?.hide()
         val context = this
+
+        setTexts()
         val meal = parseMeal()
 
         var nutritionalValues = ArrayList<PieEntry>()
@@ -28,7 +28,7 @@ class ResultsActivity : AppCompatActivity() {
         var pieDataSet = PieDataSet(nutritionalValues, "")
         pieDataSet.setColors(Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE)
         pieDataSet.valueTextColor = Color.BLACK
-        pieDataSet.valueTextSize = 12f
+        pieDataSet.valueTextSize = 18f
 
 
         var pieData = PieData(pieDataSet)
@@ -37,11 +37,13 @@ class ResultsActivity : AppCompatActivity() {
         pieChart.data = pieData;
         pieChart.description.isEnabled = false
         if(meal.calories > 0 || meal.carbohydrates > 0 || meal.fats > 0 || meal.proteins > 0)
-            pieChart.centerText = "Nutritional values of the meal"
+            pieChart.centerText = "Nutritional values"
         else
             pieChart.centerText = "No foods found"
+        pieChart.setCenterTextSize(18f)
         pieChart.animate()
         pieChart.setDrawEntryLabels(false)
+
     }
 
     fun parseMeal() : Food
@@ -113,5 +115,23 @@ class ResultsActivity : AppCompatActivity() {
         }
 
         return meal
+    }
+
+    fun setTexts()
+    {
+        val languageManager = LanguageManager()
+        languageManager.englishTexts.add("The food with the highest calories value is: ")
+        languageManager.italianTexts.add("Il cibo con il valore calorico più alto è: ")
+        languageManager.englishTexts.add("The food with the highest carbohydrates value is: ")
+        languageManager.italianTexts.add("Il cibo con il maggior numero di carboidrati è: ")
+        languageManager.englishTexts.add("The food with the highest fats value is: ")
+        languageManager.italianTexts.add("Il cibo con il maggior numero di grassi è: ")
+        languageManager.englishTexts.add("The food with the highest proteins value is: ")
+        languageManager.italianTexts.add("Il cibo con il maggior numero di proteine è: ")
+
+        findViewById<TextView>(R.id.CaloriesTV).text = languageManager.getStringAt(0)
+        findViewById<TextView>(R.id.CarbTV).text = languageManager.getStringAt(1)
+        findViewById<TextView>(R.id.FatsTV).text = languageManager.getStringAt(2)
+        findViewById<TextView>(R.id.ProteinsTV).text = languageManager.getStringAt(3)
     }
 }

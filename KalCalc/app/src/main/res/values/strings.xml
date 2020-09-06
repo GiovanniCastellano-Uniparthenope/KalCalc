@@ -8,7 +8,7 @@
     <string name="searchText">Search foods...</string>
     <string name="confirm_meal">CONFIRM MEAL</string>
     <string name="reset_list">RESET MEAL</string>
-    <string name="toggle_for_using_portions_instead_of_grams">Toggle for using portions instead of grams:</string>
+    <string name="toggle_for_using_portions_instead_of_grams">Use portions instead of grams:</string>
     <string name="x">x</string>
     <string name="grams_or_portions">grams or portions...</string>
     <string name="add_food_to_meal">ADD FOOD TO MEAL</string>
