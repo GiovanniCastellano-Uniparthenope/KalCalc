@@ -12,4 +12,5 @@
     <string name="x">x</string>
     <string name="grams_or_portions">grams or portions...</string>
     <string name="add_food_to_meal">ADD FOOD TO MEAL</string>
+    <string name="save_meal">SAVE MEAL</string>
 </resources>

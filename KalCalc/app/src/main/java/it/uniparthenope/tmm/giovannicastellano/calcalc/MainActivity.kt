@@ -1,5 +1,7 @@
 package it.uniparthenope.tmm.giovannicastellano.calcalc
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,9 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         var allfoods = static.standardFoods
         var customfoods = static.customFoods
-        var loadedFoods = ArrayList<Food>()
-        loadedFoods.addAll(customfoods)
-        loadedFoods.addAll(allfoods)
         var matchingFoods = ArrayList<String>()
 
         var searchText = findViewById<EditText>(R.id.searchText)
@@ -57,7 +56,21 @@ class MainActivity : AppCompatActivity() {
                     searchList.visibility = View.VISIBLE
                     XBtn.visibility = View.GONE
                     AddFoodBtn.visibility = View.GONE
-                    for(food in loadedFoods)
+                    for(food in static.standardFoods)
+                    {
+                        val name = food.getName(static.language.type)
+                        var sublength = 0;
+                        if(name.length >= s.length)
+                            sublength = s.length
+                        else
+                            sublength = name.length
+
+                        if(name.substring(0, sublength).toLowerCase() == s.substring(0, s.length).toLowerCase())
+                        {
+                            matchingFoods.add(food.getName(static.language.type));
+                        }
+                    }
+                    for(food in static.customFoods)
                     {
                         val name = food.getName(static.language.type)
                         var sublength = 0;
@@ -122,6 +135,14 @@ class MainActivity : AppCompatActivity() {
                             if(food.getName(static.language.type) == foodName.text)
                             { currFood = food; setted = true; break }
                         }
+                        if(!setted)
+                        {
+                            for(food in static.customFoods)
+                            {
+                                if(food.getName(static.language.type) == foodName.text)
+                                { currFood = food; setted = true; break }
+                            }
+                        }
 
                         if(setted)
                         {
@@ -148,9 +169,31 @@ class MainActivity : AppCompatActivity() {
         })
         resetListBtn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                meal.clear()
-                mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
-                mealList.adapter = mealAdapter
+                val dialogBuilder = AlertDialog.Builder(context)
+
+                // set message of alert dialog
+                var message = ""; if (static.language == LANGUAGE.ITALIAN) { message = "Vuoi davvero resettare il pasto?"; } else { message = "Are you sure you want to reset the meal?"; }
+                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "Si"; } else { yes = "Yes"; }
+                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "No"; } else { no = "No"; }
+                dialogBuilder.setMessage(message)
+                dialogBuilder.setCancelable(false)
+                dialogBuilder.setPositiveButton(yes, object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        meal.clear()
+                        mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
+                        mealList.adapter = mealAdapter
+                        dialog?.dismiss()
+                    }
+                })
+                dialogBuilder.setNegativeButton(no, object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        dialog?.dismiss()
+                    }
+                })
+
+                val alert = dialogBuilder.create()
+                alert.setTitle("Reset")
+                alert.show()
             }
         })
         confirmBtn.setOnClickListener(object : View.OnClickListener{

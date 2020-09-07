@@ -1,8 +1,14 @@
 package it.uniparthenope.tmm.giovannicastellano.calcalc
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import kotlin.collections.ArrayList
 import com.github.mikephil.charting.data.PieData
@@ -19,17 +25,21 @@ class ResultsActivity : AppCompatActivity() {
         setTexts()
         val meal = parseMeal()
 
+        var Calories = ""; if(static.language == LANGUAGE.ITALIAN) { Calories = "Calorie (KCal)"; } else { Calories = "Calories (KCal)" }
+        var Carbohydrates = ""; if(static.language == LANGUAGE.ITALIAN) { Carbohydrates = "Carboidrati (g)"; } else { Carbohydrates = "Carbohydrates (g)"; }
+        var Fats = ""; if(static.language == LANGUAGE.ITALIAN) { Fats = "Grassi (g)"; } else { Fats = "Fats (g)"; }
+        var Proteins = ""; if(static.language == LANGUAGE.ITALIAN) { Proteins = "Proteine (g)"; } else { Proteins = "Proteins (g)"; }
+
         var nutritionalValues = ArrayList<PieEntry>()
-        nutritionalValues.add(PieEntry(meal.calories, "Calories (kcal)"))
-        nutritionalValues.add(PieEntry(meal.carbohydrates, "Carbohydrates (g)"))
-        nutritionalValues.add(PieEntry(meal.fats, "Fats (g)"))
-        nutritionalValues.add(PieEntry(meal.proteins, "Proteins (g)"))
+        nutritionalValues.add(PieEntry(meal.calories, Calories))
+        nutritionalValues.add(PieEntry(meal.carbohydrates, Carbohydrates))
+        nutritionalValues.add(PieEntry(meal.fats, Fats))
+        nutritionalValues.add(PieEntry(meal.proteins, Proteins))
 
         var pieDataSet = PieDataSet(nutritionalValues, "")
         pieDataSet.setColors(Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE)
         pieDataSet.valueTextColor = Color.BLACK
         pieDataSet.valueTextSize = 18f
-
 
         var pieData = PieData(pieDataSet)
 
@@ -44,6 +54,51 @@ class ResultsActivity : AppCompatActivity() {
         pieChart.animate()
         pieChart.setDrawEntryLabels(false)
 
+        val jsonparser = JSONparser()
+
+        val saveButton = findViewById<Button>(R.id.saveMeal)
+        saveButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                var title = ""; if(static.language == LANGUAGE.ITALIAN) { title = "Nome del pasto"; } else { title = "Meal name"; }
+                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "Conferma"; } else { yes = "Confirm"; }
+                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "Annulla"; } else { no = "Cancel"; }
+                val editText = EditText(context)
+                val alertD = AlertDialog.Builder(context)
+                alertD.setTitle(title)
+                alertD.setView(editText)
+                alertD.setPositiveButton(yes, object : DialogInterface.OnClickListener{
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        if(editText.text.contains(':') || editText.text.contains('-') || editText.text.contains('_'))
+                        {
+                            val reject = AlertDialog.Builder(context)
+                            var message = ""; if(static.language == LANGUAGE.ITALIAN) { message = "Il nome contiene caratteri invalidi"; } else { message = "Inserted name contains invalid characters"; }
+                            reject.setMessage(message)
+                            reject.setPositiveButton("Ok", object: DialogInterface.OnClickListener {
+                                override fun onClick(rejectD: DialogInterface?, which: Int) {
+                                    rejectD?.dismiss()
+                                }
+                            })
+                            val rejectDialog = reject.create()
+                            rejectDialog.show()
+                        }
+                        else
+                        {
+                            val name = ArrayList<String>()
+                            name.add(editText.text.toString())
+                            val newFood = Food(name, meal.portion, meal.calories / meal.portion, meal.carbohydrates / meal.portion, meal.fats / meal.portion, meal.proteins / meal.portion, CATEGORY.OTHER)
+                            jsonparser.addCustomFood(newFood)
+                            val foodFile = openFileOutput("customFoods.json", Context.MODE_PRIVATE ).bufferedWriter().use {
+                                it.write(static.customFoodsFile)
+                            }
+                            print("Read file from cache")
+                            dialog?.dismiss()
+                        }
+                    }
+                })
+                val alertDialog = alertD.create()
+                alertDialog.show()
+            }
+        })
     }
 
     fun parseMeal() : Food
@@ -86,6 +141,7 @@ class ResultsActivity : AppCompatActivity() {
             }
             if(found)
             {
+                meal.portion += quantity
                 meal.proteins += currentFood.proteins * quantity
                 meal.carbohydrates += currentFood.carbohydrates * quantity
                 meal.fats += currentFood.fats * quantity
@@ -104,6 +160,7 @@ class ResultsActivity : AppCompatActivity() {
                 }
                 if(found)
                 {
+                    meal.portion += quantity
                     meal.proteins += currentFood.proteins * quantity
                     meal.carbohydrates += currentFood.carbohydrates * quantity
                     meal.fats += currentFood.fats * quantity
@@ -128,10 +185,13 @@ class ResultsActivity : AppCompatActivity() {
         languageManager.italianTexts.add("Il cibo con il maggior numero di grassi è: ")
         languageManager.englishTexts.add("The food with the highest proteins value is: ")
         languageManager.italianTexts.add("Il cibo con il maggior numero di proteine è: ")
+        languageManager.englishTexts.add("SAVE MEAL AS CUSTOM FOOD")
+        languageManager.italianTexts.add("SALVA PASTO COME CIBO CUSTOM")
 
         findViewById<TextView>(R.id.CaloriesTV).text = languageManager.getStringAt(0)
         findViewById<TextView>(R.id.CarbTV).text = languageManager.getStringAt(1)
         findViewById<TextView>(R.id.FatsTV).text = languageManager.getStringAt(2)
         findViewById<TextView>(R.id.ProteinsTV).text = languageManager.getStringAt(3)
+        findViewById<Button>(R.id.saveMeal).text = languageManager.getStringAt(4)
     }
 }

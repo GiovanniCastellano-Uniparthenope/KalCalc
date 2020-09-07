@@ -40,24 +40,20 @@ class SplashScreen : AppCompatActivity() {
                 foodFile = openFileInput("customFoods.json").bufferedReader().use {
                     it.readText()
                 }
-                print("Read file from cache")
+                print("Read file from cache\n")
             }
             catch(e : Exception)
             {
-
                 foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
                     it.readText()
                 }
 
-                print("Read file from assets")
+                print("Read file from assets\n")
+
 
                 openFileOutput("customFoods.json", Context.MODE_PRIVATE).bufferedWriter().use {
                     it.write(foodFile)
                 }
-            }
-
-            foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
-                it.readText()
             }
 
             try
@@ -66,14 +62,13 @@ class SplashScreen : AppCompatActivity() {
             }
             catch (e : Exception)
             {
+                error("Unable to read foodFile")
                 foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
                     it.readText()
                 }
-
-                jsonparser.readFoodsFromCustomFile(foodFile)
             }
 
-            static.language = LANGUAGE.ENGLISH
+            static.language = LANGUAGE.ITALIAN
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
