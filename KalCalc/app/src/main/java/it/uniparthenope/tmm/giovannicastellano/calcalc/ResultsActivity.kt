@@ -60,12 +60,13 @@ class ResultsActivity : AppCompatActivity() {
         saveButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 var title = ""; if(static.language == LANGUAGE.ITALIAN) { title = "Nome del pasto"; } else { title = "Meal name"; }
-                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "Conferma"; } else { yes = "Confirm"; }
-                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "Annulla"; } else { no = "Cancel"; }
+                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "CONFERMA"; } else { yes = "CONFIRM"; }
+                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "ANNULLA"; } else { no = "CANCEL"; }
                 val editText = EditText(context)
                 val alertD = AlertDialog.Builder(context)
                 alertD.setTitle(title)
                 alertD.setView(editText)
+                alertD.setCancelable(false)
                 alertD.setPositiveButton(yes, object : DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         if(editText.text.contains(':') || editText.text.contains('-') || editText.text.contains('_'))
@@ -73,7 +74,7 @@ class ResultsActivity : AppCompatActivity() {
                             val reject = AlertDialog.Builder(context)
                             var message = ""; if(static.language == LANGUAGE.ITALIAN) { message = "Il nome contiene caratteri invalidi"; } else { message = "Inserted name contains invalid characters"; }
                             reject.setMessage(message)
-                            reject.setPositiveButton("Ok", object: DialogInterface.OnClickListener {
+                            reject.setPositiveButton("OK", object: DialogInterface.OnClickListener {
                                 override fun onClick(rejectD: DialogInterface?, which: Int) {
                                     rejectD?.dismiss()
                                 }
@@ -90,9 +91,13 @@ class ResultsActivity : AppCompatActivity() {
                             val foodFile = openFileOutput("customFoods.json", Context.MODE_PRIVATE ).bufferedWriter().use {
                                 it.write(static.customFoodsFile)
                             }
-                            print("Read file from cache")
                             dialog?.dismiss()
                         }
+                    }
+                })
+                alertD.setNegativeButton(no, object : DialogInterface.OnClickListener{
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        dialog?.dismiss()
                     }
                 })
                 val alertDialog = alertD.create()
@@ -193,5 +198,10 @@ class ResultsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.FatsTV).text = languageManager.getStringAt(2)
         findViewById<TextView>(R.id.ProteinsTV).text = languageManager.getStringAt(3)
         findViewById<Button>(R.id.saveMeal).text = languageManager.getStringAt(4)
+    }
+
+    override fun onBackPressed() {
+        findViewById<Button>(R.id.saveMeal).isEnabled = true
+        super.onBackPressed()
     }
 }

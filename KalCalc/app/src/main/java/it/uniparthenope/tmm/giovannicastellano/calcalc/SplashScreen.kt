@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
+import java.util.*
 
 
 /**
@@ -47,10 +48,7 @@ class SplashScreen : AppCompatActivity() {
                 foodFile = applicationContext.assets.open("customFoodsAsset.json").bufferedReader().use {
                     it.readText()
                 }
-
                 print("Read file from assets\n")
-
-
                 openFileOutput("customFoods.json", Context.MODE_PRIVATE).bufferedWriter().use {
                     it.write(foodFile)
                 }
@@ -68,7 +66,10 @@ class SplashScreen : AppCompatActivity() {
                 }
             }
 
-            static.language = LANGUAGE.ITALIAN
+            if(Locale.getDefault().getDisplayLanguage().toLowerCase() == "italiano")
+                static.language = LANGUAGE.ITALIAN
+            else
+                static.language = LANGUAGE.ENGLISH
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -31,7 +34,7 @@
         android:id="@+id/searchText"
         android:layout_width="360dp"
         android:layout_height="50dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/searchText"
@@ -43,9 +46,11 @@
 
     <EditText
         android:id="@+id/quantityText"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/grams_or_portions"
         android:importantForAutofill="no"
@@ -53,7 +58,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/delete"
         app:layout_constraintTop_toBottomOf="@+id/searchText" />
 
     <TextView
@@ -76,10 +81,14 @@
         android:id="@+id/delete"
         android:layout_width="33dp"
         android:layout_height="33dp"
+        android:backgroundTint="#E4E4E4"
+        android:drawableTint="#E4E4E4"
+        android:foregroundTint="#E4E4E4"
         android:text="@string/x"
+        android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/foodName"
-        app:layout_constraintEnd_toEndOf="@+id/foodName"
+        app:layout_constraintStart_toEndOf="@+id/foodName"
         app:layout_constraintTop_toTopOf="@+id/foodName"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -129,6 +138,7 @@
         android:layout_marginBottom="20dp"
         android:keepScreenOn="false"
         android:text="@string/confirm_meal"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
@@ -141,6 +151,7 @@
         android:layout_marginBottom="20dp"
         android:keepScreenOn="false"
         android:text="@string/reset_list"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -152,9 +163,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/add_food_to_meal"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usePortions" />
+
+    <Button
+        android:id="@+id/addCustomFood"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#03BBCC"
+        android:shape="oval"
+        android:text="@string/plus"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/searchText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

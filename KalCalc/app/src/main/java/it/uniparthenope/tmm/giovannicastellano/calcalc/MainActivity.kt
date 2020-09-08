@@ -17,33 +17,35 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
 
         val context = this
 
         setTexts()
 
-        var foodName = findViewById<TextView>(R.id.foodName)
-        var quantity = findViewById<EditText>(R.id.quantityText)
-        var usePortions = findViewById<Switch>(R.id.usePortions)
-        var mealList = findViewById<ListView>(R.id.mealList)
-        var meal = ArrayList<String>()
+        val foodName = findViewById<TextView>(R.id.foodName)
+        val quantity = findViewById<EditText>(R.id.quantityText)
+        val usePortions = findViewById<Switch>(R.id.usePortions)
+        val mealList = findViewById<ListView>(R.id.mealList)
+        val meal = ArrayList<String>()
         var mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
         mealList.adapter = mealAdapter
 
-        var XBtn = findViewById<Button>(R.id.delete)
-        var AddFoodBtn = findViewById<Button>(R.id.addFoodToMeal)
-        var ConfirmBtn = findViewById<Button>(R.id.confirmBtn)
-        var ResetBtn = findViewById<Button>(R.id.confirmBtn)
+        val XBtn = findViewById<Button>(R.id.delete)
+        val AddFoodBtn = findViewById<Button>(R.id.addFoodToMeal)
+        val ConfirmBtn = findViewById<Button>(R.id.confirmBtn)
+        val ResetBtn = findViewById<Button>(R.id.resetListBtn)
+        val AddCustomFoodBtn = findViewById<Button>(R.id.addCustomFood)
 
-        var buttons = ArrayList<Button>()
-        buttons.add(XBtn); buttons.add(AddFoodBtn); buttons.add(ConfirmBtn); buttons.add(ResetBtn)
+        val buttons = ArrayList<Button>()
+        buttons.add(XBtn); buttons.add(AddFoodBtn); buttons.add(ConfirmBtn); buttons.add(ResetBtn); buttons.add(AddCustomFoodBtn)
 
         var allfoods = static.standardFoods
         var customfoods = static.customFoods
         var matchingFoods = ArrayList<String>()
 
-        var searchText = findViewById<EditText>(R.id.searchText)
-        var searchList = findViewById<ListView>(R.id.searchList)
+        val searchText = findViewById<EditText>(R.id.searchText)
+        val searchList = findViewById<ListView>(R.id.searchList)
         var searchAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, matchingFoods)
         searchList.adapter = searchAdapter
         searchList.visibility = View.GONE
@@ -173,8 +175,8 @@ class MainActivity : AppCompatActivity() {
 
                 // set message of alert dialog
                 var message = ""; if (static.language == LANGUAGE.ITALIAN) { message = "Vuoi davvero resettare il pasto?"; } else { message = "Are you sure you want to reset the meal?"; }
-                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "Si"; } else { yes = "Yes"; }
-                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "No"; } else { no = "No"; }
+                var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "SI"; } else { yes = "YES"; }
+                var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "NO"; } else { no = "NO"; }
                 dialogBuilder.setMessage(message)
                 dialogBuilder.setCancelable(false)
                 dialogBuilder.setPositiveButton(yes, object : DialogInterface.OnClickListener {
@@ -200,6 +202,12 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 static.meal = meal
                 val intent = Intent(context, ResultsActivity::class.java)
+                startActivity(intent)
+            }
+        })
+        addCustomFood.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                val intent = Intent(context, CustomFoodCreationActivity::class.java)
                 startActivity(intent)
             }
         })
