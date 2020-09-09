@@ -11,6 +11,10 @@ class static {
         @JvmStatic var highestCarb = String()
         @JvmStatic var highestFats = String()
         @JvmStatic var highestProts = String()
-        @JvmStatic var highestQ = String()
+        @JvmStatic var hasMeat = false
+        @JvmStatic var hasVegs = false
+        @JvmStatic var hasAnimalD = false
+        @JvmStatic var hasFish = false
+        @JvmStatic var hasOther = false
     }
 }

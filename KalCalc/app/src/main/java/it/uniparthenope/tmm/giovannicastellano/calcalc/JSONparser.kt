@@ -2,6 +2,7 @@ package it.uniparthenope.tmm.giovannicastellano.calcalc
 
 import org.json.JSONObject
 import java.lang.Exception
+import java.util.*
 import kotlin.collections.*
 
 class JSONparser {
@@ -9,7 +10,6 @@ class JSONparser {
         try {
             var foodJSON = JSONObject(file)
             var foodNames = foodJSON.optJSONArray("foods")
-            var allfoods = static.standardFoods
             var food: Food
 
             for (i in 0 until foodNames.length()) {
@@ -35,11 +35,11 @@ class JSONparser {
                     category = CATEGORY.ANIMAL_DERIVATE
                 else if (intcategory == 4)
                     category = CATEGORY.FISH
-                else (intcategory == 5)
+                else
                 category = CATEGORY.OTHER
 
                 food = Food(names, portion, calories, carbohydrates, fats, proteins, category)
-                allfoods.add(food)
+                static.standardFoods.add(food)
             }
 
             return foodNames.length()
@@ -54,7 +54,6 @@ class JSONparser {
         try {
             var foodJSON = JSONObject(file)
             var foodNames = foodJSON.optJSONArray("foods")
-            var allfoods = static.customFoods
             static.customFoodsFile = file;
             var food: Food
 
@@ -85,7 +84,7 @@ class JSONparser {
                     category = CATEGORY.OTHER
 
                 food = Food(names, portion, calories, carbohydrates, fats, proteins, category)
-                allfoods.add(food)
+                static.customFoods.add(food)
             }
 
             return foodNames.length()

@@ -14,6 +14,8 @@ import kotlin.collections.ArrayList
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import org.w3c.dom.Text
+import java.util.*
 
 class ResultsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,9 +56,12 @@ class ResultsActivity : AppCompatActivity() {
         pieChart.animate()
         pieChart.setDrawEntryLabels(false)
 
+        describeMeal()
+
         val jsonparser = JSONparser()
 
         val saveButton = findViewById<Button>(R.id.saveMeal)
+        
         saveButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 var title = ""; if(static.language == LANGUAGE.ITALIAN) { title = "Nome del pasto"; } else { title = "Meal name"; }
@@ -84,6 +89,7 @@ class ResultsActivity : AppCompatActivity() {
                         }
                         else
                         {
+                            saveButton.isEnabled = false;
                             val name = ArrayList<String>()
                             name.add(editText.text.toString())
                             val newFood = Food(name, meal.portion, meal.calories / meal.portion, meal.carbohydrates / meal.portion, meal.fats / meal.portion, meal.proteins / meal.portion, CATEGORY.OTHER)
@@ -104,6 +110,9 @@ class ResultsActivity : AppCompatActivity() {
                 alertDialog.show()
             }
         })
+
+        if(static.meal.count() < 1)
+            saveButton.isEnabled = false
     }
 
     fun parseMeal() : Food
@@ -116,6 +125,12 @@ class ResultsActivity : AppCompatActivity() {
         var quantity : Float
         var i : Int
         var found = false
+
+        var maxCal = -1f
+        var maxCarb = -1f
+        var maxFats = -1f
+        var maxProt = -1f
+
         for(string in static.meal)
         {
             foodName = ""
@@ -151,6 +166,33 @@ class ResultsActivity : AppCompatActivity() {
                 meal.carbohydrates += currentFood.carbohydrates * quantity
                 meal.fats += currentFood.fats * quantity
                 meal.calories += currentFood.calories * quantity
+
+                if(maxCal < currentFood.calories)
+                {
+                    maxCal = currentFood.calories
+                    static.highestCal = currentFood.getName(static.language.type)
+                }
+                if(maxCarb < currentFood.carbohydrates)
+                {
+                    maxCarb = currentFood.carbohydrates
+                    static.highestCarb = currentFood.getName(static.language.type)
+                }
+                if(maxFats < currentFood.fats)
+                {
+                    maxFats = currentFood.fats
+                    static.highestFats = currentFood.getName(static.language.type)
+                }
+                if(maxProt < currentFood.proteins)
+                {
+                    maxProt = currentFood.proteins
+                    static.highestProts = currentFood.getName(static.language.type)
+                }
+
+                if(currentFood.category == CATEGORY.MEAT) static.hasMeat = true
+                if(currentFood.category == CATEGORY.VEGETABLES) static.hasVegs = true
+                if(currentFood.category == CATEGORY.ANIMAL_DERIVATE) static.hasAnimalD = true
+                if(currentFood.category == CATEGORY.FISH) static.hasFish = true
+                if(currentFood.category == CATEGORY.OTHER) static.hasOther = true
             }
             else
             {
@@ -170,6 +212,33 @@ class ResultsActivity : AppCompatActivity() {
                     meal.carbohydrates += currentFood.carbohydrates * quantity
                     meal.fats += currentFood.fats * quantity
                     meal.calories += currentFood.calories * quantity
+
+                    if(maxCal < currentFood.calories)
+                    {
+                        maxCal = currentFood.calories
+                        static.highestCal = currentFood.getName(static.language.type)
+                    }
+                    if(maxCarb < currentFood.carbohydrates)
+                    {
+                        maxCarb = currentFood.carbohydrates
+                        static.highestCarb = currentFood.getName(static.language.type)
+                    }
+                    if(maxFats < currentFood.fats)
+                    {
+                        maxFats = currentFood.fats
+                        static.highestFats = currentFood.getName(static.language.type)
+                    }
+                    if(maxProt < currentFood.proteins)
+                    {
+                        maxProt = currentFood.proteins
+                        static.highestProts = currentFood.getName(static.language.type)
+                    }
+
+                    if(currentFood.category == CATEGORY.MEAT) static.hasMeat = true
+                    if(currentFood.category == CATEGORY.VEGETABLES) static.hasVegs = true
+                    if(currentFood.category == CATEGORY.ANIMAL_DERIVATE) static.hasAnimalD = true
+                    if(currentFood.category == CATEGORY.FISH) static.hasFish = true
+                    if(currentFood.category == CATEGORY.OTHER) static.hasOther = true
                 }
             }
 
@@ -177,6 +246,58 @@ class ResultsActivity : AppCompatActivity() {
         }
 
         return meal
+    }
+
+    fun describeMeal()
+    {
+        val calText = findViewById<TextView>(R.id.CaloriesTV)
+        val carbText = findViewById<TextView>(R.id.CarbTV)
+        val fatsText = findViewById<TextView>(R.id.FatsTV)
+        val proteinsText = findViewById<TextView>(R.id.ProteinsTV)
+        val generalText = findViewById<TextView>(R.id.generalTV)
+
+        if(static.highestCal != "")
+            calText.text = calText.text.toString() + static.highestCal
+        if(static.highestCarb != "")
+            carbText.text = carbText.text.toString() + static.highestCarb
+        if(static.highestFats != "")
+            fatsText.text = fatsText.text.toString() + static.highestFats
+        if(static.highestProts != "")
+            proteinsText.text = proteinsText.text.toString() + static.highestProts
+
+        val languageManager = LanguageManager()
+        languageManager.englishTexts.add("The meal is vegan")
+        languageManager.italianTexts.add("Il pasto è vegano")
+        languageManager.englishTexts.add("The meal might be vegan, some ingredients categories are labeled as \"Other\"")
+        languageManager.italianTexts.add("Il pasto potrebbe essere vegano, ma alcuni ingredienti sono etichettati come \"Altro\"")
+        languageManager.englishTexts.add("The meal is vegetarian, but not vegan")
+        languageManager.italianTexts.add("Il pasto è vegetariano, ma non vegano")
+        languageManager.englishTexts.add("The meal might be vegetarian, some ingredients categories are labeled as \"Other\"")
+        languageManager.italianTexts.add("Il pasto potrebbe essere vegetariano, ma alcuni ingredienti sono etichettati come \"Altro\"")
+        languageManager.englishTexts.add("The meal is NOT vegan, nor vegetarian: it contains meat")
+        languageManager.italianTexts.add("Il pasto NON è vegano, nè vegetariano: contiene carne")
+
+        var text = ""
+        if(static.hasVegs)
+        {
+            if (!static.hasOther)
+                text = languageManager.getStringAt(0)
+            else
+                text = languageManager.getStringAt(1)
+        }
+        if(static.hasAnimalD || static.hasFish)
+        {
+            if(!static.hasOther)
+                text = languageManager.getStringAt(2)
+            else
+                text = languageManager.getStringAt(3)
+        }
+        if(static.hasMeat)
+        {
+            text = languageManager.getStringAt(4)
+        }
+
+        generalText.text = text
     }
 
     fun setTexts()
@@ -201,7 +322,17 @@ class ResultsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        findViewById<Button>(R.id.saveMeal).isEnabled = true
+        val saveButton = findViewById<Button>(R.id.saveMeal)
+        static.highestCal = "";
+        static.highestCarb = "";
+        static.highestFats = "";
+        static.highestProts = "";
+        static.hasMeat = false;
+        static.hasVegs = false;
+        static.hasAnimalD = false;
+        static.hasFish = false;
+        static.hasOther = false;
         super.onBackPressed()
+        saveButton.isEnabled = true
     }
 }

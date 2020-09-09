@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val foodName = findViewById<TextView>(R.id.foodName)
         val quantity = findViewById<EditText>(R.id.quantityText)
-        val usePortions = findViewById<Switch>(R.id.usePortions)
+        val usePortions = findViewById<CheckBox>(R.id.usePortions)
         val mealList = findViewById<ListView>(R.id.mealList)
         val meal = ArrayList<String>()
         var mealAdapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, meal)
@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                         foodName.text = string
                         searchText.text.clear()
                         searchList.visibility = View.GONE
+                        quantity.requestFocus()
                     }
             }
         })

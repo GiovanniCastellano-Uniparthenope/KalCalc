@@ -90,11 +90,7 @@ class CustomFoodCreationActivity : AppCompatActivity() {
                 })
                 alertD.setNegativeButton(no, object : DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, which: Int) {
-                        nameEdit.text.clear()
-                        caloriesEdit.text.clear()
-                        carboEdit.text.clear()
-                        fatsEdit.text.clear()
-                        proteinsEdit.text.clear()
+                        dialog?.dismiss()
                     }
                 })
                 alertD.create().show()
