@@ -7,7 +7,7 @@
 			"carbohydrates": "1.0",
 			"fats": "0.0",
 			"proteins": "0.0",
-			"category": "5"
+			"category": "2"
 		},
 		{
 			"names": ["Flour", "Farina"],
@@ -16,7 +16,7 @@
 			"carbohydrates": "0.76",
 			"fats": "0.0096",
 			"proteins": "0.104",
-			"category": "5"
+			"category": "2"
 		},
 		{
 			"names": ["Egg", "Uovo"],
@@ -29,7 +29,7 @@
 		},
 		{
 			"names": ["Carrot", "Carota"],
-			"portion": "48",
+			"portion": "46",
 			"calories": "0.34",
 			"carbohydrates": "0.082",
 			"fats": "0.002",
@@ -62,6 +62,339 @@
 			"fats": "0.12",
 			"proteins": "0.23",
 			"category": "1"
+		},
+		{
+			"names": ["Onion", "Cipolla"],
+			"portion": "94",
+			"calories": "0.43",
+			"carbohydrates": "0.10",
+			"fats": "0.002",
+			"proteins": "0.01",
+			"category": "2"
+		},
+		{
+			"names": ["Duck", "Anatra"],
+			"portion": "140",
+			"calories": "3.37",
+			"carbohydrates": "0.0",
+			"fats": "0.28",
+			"proteins": "0.19",
+			"category": "1"
+		},
+		{
+			"names": ["Turkey", "Tacchino"],
+			"portion": "113",
+			"calories": "1.89",
+			"carbohydrates": "0.0008",
+			"fats": "0.07",
+			"proteins": "0.28",
+			"category": "1"
+		},
+		{
+			"names": ["Quail", "Quaglia"],
+			"portion": "85",
+			"calories": "2.27",
+			"carbohydrates": "0.0",
+			"fats": "0.14",
+			"proteins": "0.24",
+			"category": "1"
+		},
+		{
+			"names": ["Milk", "Latte"],
+			"portion": "245",
+			"calories": "0.51",
+			"carbohydrates": "0.05",
+			"fats": "0.02",
+			"proteins": "0.03",
+			"category": "3"
+		},
+		{
+			"names": ["Yogurt", "Yogurt"],
+			"portion": "170",
+			"calories": "0.63",
+			"carbohydrates": "0.07",
+			"fats": "0.01",
+			"proteins": "0.05",
+			"category": "3"
+		},
+		{
+			"names": ["Cheese", "Formaggio"],
+			"portion": "28",
+			"calories": "4.03",
+			"carbohydrates": "0.03",
+			"fats": "0.33",
+			"proteins": "0.22",
+			"category": "3"
+		},
+		{
+			"names": ["Honey", "Miele"],
+			"portion": "21",
+			"calories": "3.04",
+			"carbohydrates": "0.81",
+			"fats": "0.0",
+			"proteins": "0.005",
+			"category": "3"
+		},
+		{
+			"names": ["Trout", "Trota"],
+			"portion": "62",
+			"calories": "1.90",
+			"carbohydrates": "0.0",
+			"fats": "0.008",
+			"proteins": "0.27",
+			"category": "4"
+		},
+		{
+			"names": ["Salmon", "Salmone"],
+			"portion": "227",
+			"calories": "2.06",
+			"carbohydrates": "0.0",
+			"fats": "0.12",
+			"proteins": "0.22",
+			"category": "4"
+		},
+		{
+			"names": ["Swordfish", "Pesce Spada"],
+			"portion": "106",
+			"calories": "1.71",
+			"carbohydrates": "0.0",
+			"fats": "0.08",
+			"proteins": "0.23",
+			"category": "4"
+		},
+		{
+			"names": ["Lobster", "Aragosta"],
+			"portion": "85",
+			"calories": "1.43",
+			"carbohydrates": "0.03",
+			"fats": "0.02",
+			"proteins": "0.26",
+			"category": "4"
+		},
+		{
+			"names": ["Shrimp", "Gambero"],
+			"portion": "5",
+			"calories": "1.2",
+			"carbohydrates": "0.02",
+			"fats": "0.02",
+			"proteins": "0.22",
+			"category": "4"
+		},
+		{
+			"names": ["Octopus", "Polpo"],
+			"portion": "85",
+			"calories": "1.63",
+			"carbohydrates": "0.04",
+			"fats": "0.02",
+			"proteins": "0.29",
+			"category": "4"
+		},
+		{
+			"names": ["Cod", "Merluzzo"],
+			"portion": "180",
+			"calories": "1.05",
+			"carbohydrates": "0.0",
+			"fats": "0.008",
+			"proteins": "0.23",
+			"category": "4"
+		},
+		{
+			"names": ["Clam", "Vongola"],
+			"portion": "85",
+			"calories": "1.48",
+			"carbohydrates": "0.05",
+			"fats": "0.02",
+			"proteins": "0.26",
+			"category": "4"
+		},
+		{
+			"names": ["Eggplant", "Melanzana"],
+			"portion": "566",
+			"calories": "0.35",
+			"carbohydrates": "0.086",
+			"fats": "0.0023",
+			"proteins": "0.008",
+			"category": "2"
+		},
+		{
+			"names": ["Zucchini", "Zucchina"],
+			"portion": "217",
+			"calories": "0.15",
+			"carbohydrates": "0.026",
+			"fats": "0.0037",
+			"proteins": "0.0115",
+			"category": "2"
+		},
+		{
+			"names": ["Potato", "Patata"],
+			"portion": "173",
+			"calories": "0.93",
+			"carbohydrates": "0.21",
+			"fats": "0.001",
+			"proteins": "0.025",
+			"category": "2"
+		},
+		{
+			"names": ["Spinach", "Spinacio"],
+			"portion": "180",
+			"calories": "0.23",
+			"carbohydrates": "0.037",
+			"fats": "0.0027",
+			"proteins": "0.029",
+			"category": "2"
+		},
+		{
+			"names": ["Tomato", "Pomodoro"],
+			"portion": "123",
+			"calories": "0.178",
+			"carbohydrates": "0.039",
+			"fats": "0.0024",
+			"proteins": "0.009",
+			"category": "2"
+		},
+		{
+			"names": ["Mushrooms", "Funghi"],
+			"portion": "60",
+			"calories": "0.283",
+			"carbohydrates": "0.0516",
+			"fats": "0.005",
+			"proteins": "0.0216",
+			"category": "2"
+		},
+		{
+			"names": ["Garlic", "Aglio"],
+			"portion": "3",
+			"calories": "1.5",
+			"carbohydrates": "0.33",
+			"fats": "0.0",
+			"proteins": "0.06",
+			"category": "2"
+		},
+		{
+			"names": ["Hot dog", "Hot dog"],
+			"portion": "48",
+			"calories": "2.39",
+			"carbohydrates": "0.027",
+			"fats": "0.29",
+			"proteins": "0.116",
+			"category": "1"
+		},
+		{
+			"names": ["Strawberry", "Fragola"],
+			"portion": "90",
+			"calories": "0.32",
+			"carbohydrates": "0.076",
+			"fats": "0.003",
+			"proteins": "0.006",
+			"category": "2"
+		},
+		{
+			"names": ["Cherry", "Ciliegia"],
+			"portion": "41",
+			"calories": "0.634",
+			"carbohydrates": "0.158",
+			"fats": "0.002",
+			"proteins": "0.009",
+			"category": "2"
+		},
+		{
+			"names": ["Orange", "Arancia"],
+			"portion": "140",
+			"calories": "0.49",
+			"carbohydrates": "0.128",
+			"fats": "0.0014",
+			"proteins": "0.009",
+			"category": "2"
+		},
+		{
+			"names": ["Rabbit", "Coniglio"],
+			"portion": "85",
+			"calories": "2.06",
+			"carbohydrates": "0.0",
+			"fats": "0.083",
+			"proteins": "0.305",
+			"category": "1"
+		},
+		{
+			"names": ["Pumpkin", "Zucca"],
+			"portion": "245",
+			"calories": "0.2",
+			"carbohydrates": "0.05",
+			"fats": "0.0008",
+			"proteins": "0.007",
+			"category": "2"
+		},
+		{
+			"names": ["Fennel", "Finocchio"],
+			"portion": "87",
+			"calories": "0.31",
+			"carbohydrates": "0.073",
+			"fats": "0.002",
+			"proteins": "0.01",
+			"category": "2"
+		},
+		{
+			"names": ["Rice", "Riso"],
+			"portion": "158",
+			"calories": "1.297",
+			"carbohydrates": "0.28",
+			"fats": "0.002",
+			"proteins": "0.027",
+			"category": "2"
+		},
+		{
+			"names": ["Wheat", "Grano"],
+			"portion": "192",
+			"calories": "3.29",
+			"carbohydrates": "0.68",
+			"fats": "0.019",
+			"proteins": "0.156",
+			"category": "2"
+		},
+		{
+			"names": ["Pasta", "Pasta"],
+			"portion": "124",
+			"calories": "1.58",
+			"carbohydrates": "0.306",
+			"fats": "0.0096",
+			"proteins": "0.058",
+			"category": "2"
+		},
+		{
+			"names": ["Sausage", "Salsiccia"],
+			"portion": "68",
+			"calories": "3.08",
+			"carbohydrates": "0.0088",
+			"fats": "0.279",
+			"proteins": "0.119",
+			"category": "1"
+		},
+		{
+			"names": ["Mayonnaise", "Maionese"],
+			"portion": "14",
+			"calories": "6.71",
+			"carbohydrates": "0.007",
+			"fats": "0.714",
+			"proteins": "0.007",
+			"category": "5"
+		},
+		{
+			"names": ["Chocolate", "Cioccolato"],
+			"portion": "7",
+			"calories": "5.28",
+			"carbohydrates": "0.6",
+			"fats": "0.3",
+			"proteins": "0.07",
+			"category": "5"
+		},
+		{
+			"names": ["Ketchup", "Ketchup"],
+			"portion": "17",
+			"calories": "1.0",
+			"carbohydrates": "0.276",
+			"fats": "0.0",
+			"proteins": "0.0117",
+			"category": "2"
 		},
 		{
 			"names": ["Tuna", "Tonno"],
