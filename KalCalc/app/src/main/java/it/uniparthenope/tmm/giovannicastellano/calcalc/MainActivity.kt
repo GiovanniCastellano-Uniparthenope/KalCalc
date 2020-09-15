@@ -174,7 +174,6 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 val dialogBuilder = AlertDialog.Builder(context)
 
-                // set message of alert dialog
                 var message = ""; if (static.language == LANGUAGE.ITALIAN) { message = "Vuoi davvero resettare il pasto?"; } else { message = "Are you sure you want to reset the meal?"; }
                 var yes = ""; if(static.language == LANGUAGE.ITALIAN) { yes = "SI"; } else { yes = "YES"; }
                 var no = ""; if(static.language == LANGUAGE.ITALIAN) { no = "NO"; } else { no = "NO"; }

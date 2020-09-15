@@ -74,7 +74,7 @@ class ResultsActivity : AppCompatActivity() {
                 alertD.setCancelable(false)
                 alertD.setPositiveButton(yes, object : DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, which: Int) {
-                        if(editText.text.contains(':') || editText.text.contains('-') || editText.text.contains('_'))
+                        if(editText.text.contains(':') || editText.text.contains('-') || editText.text.contains('_') || editText.text.isEmpty())
                         {
                             val reject = AlertDialog.Builder(context)
                             var message = ""; if(static.language == LANGUAGE.ITALIAN) { message = "Il nome contiene caratteri invalidi"; } else { message = "Inserted name contains invalid characters"; }
